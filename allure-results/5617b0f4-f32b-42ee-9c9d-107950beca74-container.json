@@ -1,0 +1,1 @@
+{"uuid":"5617b0f4-f32b-42ee-9c9d-107950beca74","name":"UITests.SwoopTest.closePage","children":["18812b33-de06-4d7a-b50a-531b908eeb9f"],"description":"","befores":[],"afters":[{"name":"closePage","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1753426684439,"stop":1753426684452}],"start":1753426684439,"stop":1753426684452}
