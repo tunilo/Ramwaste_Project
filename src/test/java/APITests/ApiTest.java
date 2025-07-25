@@ -105,5 +105,24 @@ public class ApiTest {
                 .then()
                 .statusCode(204);
     }
+
+    @Test(priority = 6)
+    public void InvalidloginTest() {
+        String body = """
+            {
+              "email": "tekla.shalikiani@gmail.com",
+              "password": "cityslicka"
+            }
+            """;
+
+        given()
+                .headers(HEADERS)
+                .body(body)
+                .when()
+                .post("/login")
+                .then()
+                .statusCode(200)
+                .body("token", notNullValue());
+    }
 }
 

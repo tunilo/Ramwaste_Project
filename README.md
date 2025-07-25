@@ -6,4 +6,11 @@ AS LONG AS  this code is using not local websites, you dont need to setup other 
 
 In src/test folder there is UI and API tests.
 
-I it has errors sync pom.xml file
+If it has errors sync pom.xml file
+
+If u dont have pw installed
+npm install -D @playwright/test
+npx playwright install
+
+
+

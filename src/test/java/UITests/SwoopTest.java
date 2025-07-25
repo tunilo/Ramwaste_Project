@@ -9,7 +9,11 @@ import org.example.Steps.Swoop.*;
 import org.example.data.Constants;
 import org.example.data.LanguageDataProvider;
 import org.example.data.SearchDataProvider;
+import org.testng.Assert;
 import org.testng.annotations.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -185,4 +189,26 @@ public class SwoopTest  {
                 .switchToGeorgian()
                 .validateGeorgianLanguage();
     }
+
+    @Test
+    public void snapshotTest() throws Exception {
+        String snapshotName = "Home.png";
+        String baselinePath = "snapshots/" + snapshotName;
+
+        Path currentScreenshot = Paths.get("temp/" + snapshotName);
+        Files.createDirectories(currentScreenshot.getParent());
+        page.screenshot(new Page.ScreenshotOptions().setPath(currentScreenshot));
+
+        Path baseline = Paths.get(baselinePath);
+        if (!Files.exists(baseline)) {
+            Files.createDirectories(baseline.getParent());
+            Files.copy(currentScreenshot, baseline);
+            System.out.println("Baseline created: " + baseline);
+        } else {
+            byte[] current = Files.readAllBytes(currentScreenshot);
+            byte[] expected = Files.readAllBytes(baseline);
+            Assert.assertEquals(current, expected, "Visual regression detected!");
+        }
+    }
+
 }
